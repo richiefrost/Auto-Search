@@ -23,10 +23,10 @@ class AutoSearchSpider(scrapy.Spider):
 			item['link'] = 'http://www.ksl.com' + link.strip()
 			item['title'] = listing.xpath("./h2[@class='title']/a/text()").extract_first().strip()
 			
-			price = listing.xpath("./div[@class='listing-detail-line price']/text()").extract_first()
+			price = listing.xpath("./div[@class='listing-detail-line price']/@data-price").extract_first()
 			if price is None:
-				price = "0"
-			item['price'] = float(price.replace("$","").replace(",","").replace("MSRP","").strip())
+				price = 0
+			item['price'] = float(price)
 			
 			mileage = listing.xpath("./div[@class='listing-detail-line mileage']/text()").extract_first()
 			if mileage is None:
