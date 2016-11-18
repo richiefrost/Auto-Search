@@ -26,7 +26,7 @@ class AutoSearchSpider(scrapy.Spider):
 			price = listing.xpath("./div[@class='listing-detail-line price']/@data-price").extract_first()
 			if price is None:
 				price = 0
-			item['price'] = float(price)
+			item['price'] = price
 			
 			mileage = listing.xpath("./div[@class='listing-detail-line mileage']/text()").extract_first()
 			if mileage is None:
